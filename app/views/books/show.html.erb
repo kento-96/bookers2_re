@@ -28,6 +28,9 @@
           <td>
             <%= @book.body %>
           </td>
+          <td id="comment-count">
+            <%= render 'books/comment_count', book: @book %>
+            </td>
           <% if @book.user==current_user %>
           <td><%= link_to "Edit",edit_book_path(@book.id),class:"btn btn-success" %></td>
           <td><%= link_to "Destroy",book_path(@book.id),method: :delete,"data-confirm" => "Are you sure?",class:"btn btn-danger"%></td>
@@ -35,6 +38,18 @@
         </tr>
       </tbody>
       </table>
+      <h4>Book Comments</h4>
+      <table id="comment_area">
+        <%= render "books/comment",user: current_user,book: @book,book_comment: @book_comment %>
+      </table>
+       <div>
+         <%= form_with(model:[@book,@book_comment],local:true)do |f| %>
+         <%= f.text_area :comment,rows:"5",class:"form-control comment_form",placeholder:"コメントをここに",id:"form"%>
+         <%= f.submit "送信" %>
+         <% end %>
+       </div>
+
+
     </div>
   </div>
 </div>

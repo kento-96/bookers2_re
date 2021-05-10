@@ -1,8 +1,8 @@
 class BooksController < ApplicationController
    before_action :authenticate_user!
-  
+
   before_action :current_user,only:[:edit,:update]
-  
+
   def index
     @book=Book.new
     @user=User.find(current_user.id)
@@ -28,6 +28,7 @@ class BooksController < ApplicationController
     @user=User.find(@book.user_id)
     @new=Book.new
     @books=Book.all
+     @book_comment=BookComment.new
   end
 
   def edit
