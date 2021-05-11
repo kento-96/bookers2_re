@@ -28,6 +28,9 @@
           <td>
             <%= @book.body %>
           </td>
+          <td>
+            <%= render "favorites/favorites", user: current_user,book: @book%>
+          </td>
           <td id="comment-count">
             <%= render 'books/comment_count', book: @book %>
             </td>
